@@ -9,24 +9,23 @@ import {Component} from '@angular/core'
   >press me </button>
     <input
     type="text"
-    [value]="name"
-    (blur)="handleBlur($event)"
-    (input)="handleInput($event)"
-    >
+    [ngModel]="name"
+    (ngModelChange)="handleChange($event)" >
+    <input
+    type="text"
+    [(ngModel)]="name">
+    <div>
     {{ name }}
+    </div>
   </div>
   `,
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
   name: string = 'todd';
-  handleInput(event: any) {
-    this.name = event.target.value;
+  handleChange(value: string) {
+    this.name = value;
   };
-  handleBlur(event: any) {
-    this.name = event.target.value;
-    console.log(event);
-  }
   handleClick() {
     this.name = 'aaaaaaa';
   }
