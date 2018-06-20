@@ -4,29 +4,16 @@ import {Component} from '@angular/core'
   selector: 'app-root',
   template: `
   <div class="app">
-  <button 
-  (click)="handleClick()"
-  >press me </button>
-    <input
-    type="text"
-    [ngModel]="name"
-    (ngModelChange)="handleChange($event)" >
-    <input
-    type="text"
-    [(ngModel)]="name">
-    <div>
-    {{ name }}
-    </div>
+  <button (click)="handleClick(username.value)" >get value</button>
+    <input type="text" #username>
+    <div> {{ name }} </div>
   </div>
   `,
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
   name: string = 'todd';
-  handleChange(value: string) {
-    this.name = value;
-  };
-  handleClick() {
-    this.name = 'aaaaaaa';
+  handleClick(v: string) {
+    console.log(v);
   }
 }
