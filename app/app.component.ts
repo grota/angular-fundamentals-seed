@@ -3,7 +3,8 @@ import {Component} from '@angular/core'
 interface Passenger {
   id: number,
   fullname: string,
-  checkedIn: boolean
+  checkedIn: boolean,
+  checkInDate: number | null
 }
 @Component({
   selector: 'app-root',
@@ -17,41 +18,9 @@ interface Passenger {
       [class.checked-in]="passenger.checkedIn"
       ></span>
       {{i}}: {{passenger.fullname}}
-    </li>
-  </ul>
-  <h3>Airline passengers (ngClass)</h3>
-  <ul>
-    <li *ngFor="let passenger of passengers; let i=index">
-      <span
-      class="status"
-      [ngClass]="{
-        'checked-in': passenger.checkedIn,
-        'checked-out': !passenger.checkedIn
-      }"
-      ></span>
-      {{i}}: {{passenger.fullname}}
-    </li>
-  </ul>
-  <h3>Airline passengers (bind style.backgroundColor)</h3>
-  <ul>
-    <li *ngFor="let passenger of passengers; let i=index">
-      <span
-      class="status"
-      [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '')"
-      ></span>
-      {{i}}: {{passenger.fullname}}
-    </li>
-  </ul>
-  <h3>Airline passengers (ngStyle)</h3>
-  <ul>
-    <li *ngFor="let passenger of passengers; let i=index">
-      <span
-      class="status"
-      [ngStyle]="{
-        backgroundColor: (passenger.checkedIn ? '#2ecc71' : '')
-      }"
-      ></span>
-      {{i}}: {{passenger.fullname}}
+      <div class="date">
+        {{ passenger.checkInDate ? (passenger.checkInDate | date: 'yMMMMd' | uppercase) : 'Not checked in' }}
+      </div>
     </li>
   </ul>
   </div>
@@ -62,22 +31,27 @@ export class AppComponent {
   passengers: Passenger[] = [{
     id: 1,
     fullname: 'Stephen',
-    checkedIn: true
+    checkedIn: true,
+    checkInDate: 1490742000000
   }, {
     id: 2,
     fullname: 'Rose',
-    checkedIn: false
+    checkedIn: false,
+    checkInDate: null
   }, {
     id: 3,
     fullname: 'James',
-    checkedIn: true
+    checkedIn: true,
+    checkInDate: 1491606000000
   }, {
     id: 4,
     fullname: 'Louise',
-    checkedIn: true
+    checkedIn: true,
+    checkInDate: 1488412800000
   }, {
     id: 5,
     fullname: 'Tina',
-    checkedIn: false
+    checkedIn: false,
+    checkInDate: null
   }];
 }
