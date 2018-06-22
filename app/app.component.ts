@@ -9,19 +9,50 @@ interface Passenger {
   selector: 'app-root',
   template: `
   <div class="app">
-  <h3> Airline passengers</h3>
+  <h3>Airline passengers (bind class)</h3>
   <ul>
     <li *ngFor="let passenger of passengers; let i=index">
-    {{i}}: {{passenger.fullname}}
+      <span
+      class="status"
+      [class.checked-in]="passenger.checkedIn"
+      ></span>
+      {{i}}: {{passenger.fullname}}
     </li>
   </ul>
-  <h3> Airline passengers</h3>
+  <h3>Airline passengers (ngClass)</h3>
   <ul>
-    <template ngFor let-passenger let-i="index" [ngForOf]="passengers">
-      <li>
-        {{i}}: {{passenger.fullname}}
-      </li>
-    </template>
+    <li *ngFor="let passenger of passengers; let i=index">
+      <span
+      class="status"
+      [ngClass]="{
+        'checked-in': passenger.checkedIn,
+        'checked-out': !passenger.checkedIn
+      }"
+      ></span>
+      {{i}}: {{passenger.fullname}}
+    </li>
+  </ul>
+  <h3>Airline passengers (bind style.backgroundColor)</h3>
+  <ul>
+    <li *ngFor="let passenger of passengers; let i=index">
+      <span
+      class="status"
+      [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '')"
+      ></span>
+      {{i}}: {{passenger.fullname}}
+    </li>
+  </ul>
+  <h3>Airline passengers (ngStyle)</h3>
+  <ul>
+    <li *ngFor="let passenger of passengers; let i=index">
+      <span
+      class="status"
+      [ngStyle]="{
+        backgroundColor: (passenger.checkedIn ? '#2ecc71' : '')
+      }"
+      ></span>
+      {{i}}: {{passenger.fullname}}
+    </li>
   </ul>
   </div>
   `,
