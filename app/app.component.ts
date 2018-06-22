@@ -3,8 +3,7 @@ import {Component} from '@angular/core'
   selector: 'app-root',
   template: `
   <div class="app">
-    <passenger-dashboard>
-    </passenger-dashboard>
+    <passenger-dashboard> </passenger-dashboard>
   </div>
   `,
   styleUrls: ['app.component.scss']
