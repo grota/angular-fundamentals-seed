@@ -5,9 +5,10 @@ import { Passenger } from '../../models/passenger.interface'
   selector: 'passenger-dashboard',
   template: `
   <div>
-    <passenger-count
-    [items]="passengers" >
-    </passenger-count>
+    <passenger-count [items]="passengers" > </passenger-count>
+    <div *ngFor="let pass of passengers;">
+      {{pass.fullname}}
+    </div>
     <passenger-detail
     *ngFor="let passenger of passengers"
     [detail]="passenger"
@@ -23,7 +24,6 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
   constructor() {}
   ngOnInit() {
-    console.log('ngOnInit');
     this.passengers = [{
       id: 1,
       fullname: 'Stephen',
