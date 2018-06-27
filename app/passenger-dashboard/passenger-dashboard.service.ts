@@ -11,6 +11,17 @@ export class PassengerDashboardService {
 
   constructor(private http: Http) {}
 
+  updatePassenger(passenger: Passenger): Observable<Passenger> {
+    return this.http
+    .put(`${PASSENGER_API}/${passenger.id}`, passenger)
+    .map((response: Response) => response.json())
+  }
+
+  removePassenger(passenger: Passenger): Observable<Passenger> {
+    return this.http
+    .delete(`${PASSENGER_API}/${passenger.id}`)
+    .map((response: Response) => response.json())
+  }
   getPassengers(): Observable<Passenger[]> {
     return this.http
     .get(PASSENGER_API)
